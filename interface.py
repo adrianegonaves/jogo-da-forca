@@ -3,30 +3,35 @@ from ttkbootstrap.constants import SUCCESS, DARK, INFO, DANGER
 from tkinter import messagebox
 
 class JogoDaForcaInterface:
-    def __init__(self, master, logica):
-        self.master = master
+    def __init__(self, janela, logica):
+        self.janela = janela
         self.logica = logica
 
-        self.master.title("Fundamentos de Programação - Jogo da Forca")
-        self.master.geometry("700x400")
+        # configurações da tela, como título e tamanho
+        self.janela.title("Fundamentos de Programação - Jogo da Forca")
+        self.janela.geometry("800x400")
+        
+        # container pai/janela principal
+        self.frame = ttk.Frame(janela)
+        self.frame.pack(pady=30)
 
-        self.frame = ttk.Frame(master)
-        self.frame.pack(pady=20)
 
         self.exibir_tela_inicial()
 
     def exibir_tela_inicial(self):
+
         self.limpar_tela()
 
         self.label_titulo = ttk.Label(
-            self.frame, text="Fundamentos de Programação - Jogo da Forca", font=("Helvetica", 18, "bold")
+            self.frame, text="Fundamentos de Programação - Jogo da Forca", font=("Arial", 18, "bold")
         )
         self.label_titulo.pack()
+
 
         self.label_subtitulo = ttk.Label(
             self.frame,
             text="Que a Força esteja com você, jovem Padawan!",
-            font=("Helvetica", 12),
+            font=("Arial", 12),
         )
         self.label_subtitulo.pack(pady=10)
 
@@ -37,19 +42,20 @@ class JogoDaForcaInterface:
         )
         self.label_nome.pack()
 
+        # o entry é o input
         self.entry_nome = ttk.Entry(
             self.frame,
             font = ("Arial", 12),
             width=20,
             bootstyle=DARK
         )
-        self.entry_nome.pack()
+        self.entry_nome.pack(pady=5)
 
         self.button_iniciar = ttk.Button(
             self.frame, 
             text="Jogar", 
             command=self.iniciar_jogo,
-            width=20,
+            width=30,
             bootstyle=SUCCESS,
 
         )
@@ -58,10 +64,12 @@ class JogoDaForcaInterface:
     def iniciar_jogo(self):
         # o metodo get retorna o texto atual da entrada como uma string.
         nome_do_jogador = self.entry_nome.get().strip()
+        # se não existir o nome do jogador retorna uma caixa de texto com um alerta
         if not nome_do_jogador:
             messagebox.showwarning("Atenção", "Por favor, digite seu nome, jovem aprendiz Jedi!")
             return
 
+        # função nome do jogador recebe o nome do jogador
         self.logica.definir_nome_jogador(nome_do_jogador)
         self.escolher_nivel_do_jogo()
 
@@ -70,10 +78,17 @@ class JogoDaForcaInterface:
 
         self.label_subtitulo = ttk.Label(
             self.frame,
-            text=f"Bem-vindo ao Jogo da Forca, {self.logica.jogador} Que os céus da galáxia iluminem sua jornada!",
+            text=f"Bem-vindo ao Jogo da Forca, {self.logica.jogador}.",
             font=("Helvetica", 12),
         )
         self.label_subtitulo.pack(pady=10)
+
+        self.label_mensagem= ttk.Label(
+            self.frame,
+            text=f"Que os céus da galáxia iluminem sua jornada!",
+            font=("Helvetica", 12),
+        )
+        self.label_mensagem.pack(pady=10)
 
         self.label_dificuldade = ttk.Label(
             self.frame, text="Escolha seu destino na galáxia:"
@@ -105,7 +120,7 @@ class JogoDaForcaInterface:
     def jogar(self):
         self.limpar_tela()
 
-        self.label_tentativas = ttk.Label(self.frame, text="Que a força esteja com você! Aqui está o desafio que lhe espera: Você possui{self.logica.tentativas} tentativas")
+        self.label_tentativas = ttk.Label(self.frame, text=f"Que a força esteja com você! Aqui está o desafio que lhe espera: Você possui {self.logica.tentativas} tentativas")
         self.label_tentativas.pack()
 
         self.label_letras_chutadas = ttk.Label(
@@ -126,7 +141,7 @@ class JogoDaForcaInterface:
         self.entry_chute.pack()
 
         self.label_palavra = ttk.Label(
-            self.frame, text=self.logica.mostrar_palavra(), font=("Helvetica", 14)
+            self.frame, text=self.logica.exibe_palavra_secreta(), font=("Helvetica", 14)
         )
         self.label_palavra.pack(pady=10)
 
@@ -153,7 +168,7 @@ class JogoDaForcaInterface:
             return
 
         resultado = self.logica.tentar_letra(letra)
-        self.label_palavra.config(text=self.logica.mostrar_palavra())
+        self.label_palavra.config(text=self.logica.exibe_palavra_secreta())
 
          # Atualize o rótulo de letras chutadas
         letras_chutadas = ", ".join(sorted(self.logica.letras_chutadas))

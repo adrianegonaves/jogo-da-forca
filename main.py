@@ -6,7 +6,7 @@ import tkinter as tk
 def main():
     root = tk.Tk()
     logic = JogoDaForcaLogica()
-    app = JogoDaForcaInterface(root, logic)
+    application = JogoDaForcaInterface(root, logic)
     root.mainloop()
 
 
