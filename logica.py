@@ -11,7 +11,7 @@ class JogoDaForcaLogica:
         self.letras_palavra = set()
 
     def definir_nome_jogador(self, nome):
-        self.jogador = nome
+        self.jogador = nome.capitalize()
 
     def pegar_palavra_api(self):
         url = "https://api.dicionario-aberto.net/random"
@@ -45,8 +45,18 @@ class JogoDaForcaLogica:
         self.letras_palavra = set(self.palavra)
         self.letras_chutadas.clear()
 
-    def mostrar_palavra(self):
-        return " ".join([letra if letra in self.letras_chutadas else "_" for letra in self.palavra])
+    def exibe_palavra_secreta(self):
+        palavra_secreta = []
+        # percorre cada letra da palavra secreta
+        for letra in self.palavra:
+            # verifica se a letra está na palavra secreta, se tiver adiciona a letra, senão substitui por "_"
+            if letra in self.letras_chutadas:
+                palavra_secreta.append(letra)
+            else:
+                palavra_secreta.append('_')
+        
+            palavra_secreta_formata = " ".join(palavra_secreta).capitalize()
+        return palavra_secreta_formata
 
     def tentar_letra(self, letra):
         if letra in self.letras_chutadas:

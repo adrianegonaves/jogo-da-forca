@@ -1,31 +1,46 @@
-Fundamentos de programação
+# Projeto de Fundamentos de Programação
 
-Jogo da Forca.
+Objetivo deste projeto é desenvolver um Jogo da Forca dinâmico em Python, no
+âmbito da cadeira de Fundamentos de Programação, usando alguns conhecimentos
+aprendidos em aula e também por meio de pesquisa extra classe.
 
-Objetivo do jogo
+## Identificação do aluno/grupo:
 
-Criação do Jogo
+- Nome: Adriane Almeida Gonçalves nº 240000004
 
-A estrutura do codigo foi dividida em tres partes:
+- Nome: Bruno Vasconcelos Hortelão nº 240001083
 
-logica - local que gerencia a "regra de negocio" do jogo
-interface - local que gerencia a interação da interface.
-main - local que gerencia toda a aplicação.
+- Nome: Tomás António nº 240001360
 
-Interface
+## Criando o Jogo
 
-Para criar a interface usamos uma biblicoteca do Python chamada [Tkinter](https://docs.python.org/3/library/tkinter.html)
-Tkinter é uma biblioteca que acompanha a instalação padrão e permite desenvolver interfaces gráficas, dessa forma qualquer computador que tenha o interpretador Python instalado é capaz de criar interfaces gráficas usando o Tkinter.
+1.**Desenvolvimento :**
 
-Conceitos do Tkinter:
-instanciamos a classe TK() através da variável root, que foi criada no final do código. Essa classe permite que os widgets possam ser utilizados na aplicação
-método root.mainloop() para exibirmos a tela
+Primeiro construimos um jogo simples, usando funções baiscas e que a interação fosse pelo terminal.
 
-O módulo Tkinter oferece três formas de trabalharmos com geometria e posicionamento:
+Ápos isso realizamos uma pesquisa para implementar a interface do jo, para ser mais visual e interativa.
 
-Pack;
-Grid;
-Place
+2.**Estrutura:**
+
+- logica - local que gerencia a "regra de negocio" do jogo
+- interface - local que gerencia a interação da interface.
+- main - local que gerencia toda a aplicação.
+
+  3.**Interface:**
+
+Para criar a interface usamos uma biblicoteca do Python chamada [Tkinter](https://docs.python.org/3/library/tkinter.html).
+
+Tkinter é uma biblioteca que acompanha a instalação padrão do Python e permite desenvolver interfaces gráficas, dessa forma qualquer computador que tenha o interpretador Python instalado é capaz de criar interfaces gráficas usando o Tkinter.
+
+#### Conceitos do Tkinter:
+
+- Instanciamos a classe TK() através da variável root
+- root.mainloop() : é o método que faz com que a janela fique sempre aberta, esperando algum evento(event)
+- widget : se refe a um componente qualquer da interface gráfica ( botão, caixa de texto, entre outros)
+
+  sintaxe para criar um widget : Nome_do_widget(mestre, configurações)
+
+Usamos o Pack para trabalhar com geometria e posicionamento;
 
 Estrutura basica de widgets
 
@@ -49,5 +64,8 @@ Para receber dados do usuário vamos usar o widget Entry, onde os mesmos são ca
 
 Aquivo main.py.
 
-Referencias usadas :
-[DevMedia](https://www.devmedia.com.br/tkinter-interfaces-graficas-em-python/33956)
+## Referência
+
+- [DevMedia](https://www.devmedia.com.br/tkinter-interfaces-graficas-em-python/33956)
+- [ttkbootstrap](https://ttkbootstrap.readthedocs.io/en/latest/styleguide/)
+- [Introdução a Python](https://www.cos.ufrj.br/~bfgoldstein/python/tutorialtkinter.pdf)
